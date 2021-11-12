@@ -9,6 +9,7 @@ public struct CSEntityList {
 [Serializable]
 public struct CSEntity {
     public int shapeIndex;
+    public string name;
     public List<int> behaviours;
 
     public override string ToString() {

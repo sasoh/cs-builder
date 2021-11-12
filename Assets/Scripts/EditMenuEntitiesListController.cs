@@ -5,6 +5,7 @@ public class EditMenuEntitiesListController: MonoBehaviour {
     public GameObject savedEntityPrefab;
     public GameObject grid;
     public Action didPressNewButton;
+    public Action<int> didPressSavedButton;
 
     void Start() {
         Debug.Assert(savedEntityPrefab != null);
@@ -25,8 +26,9 @@ public class EditMenuEntitiesListController: MonoBehaviour {
         for (var i = 0; i < saved.Count; i++) {
             var entityButton = Instantiate(savedEntityPrefab, grid.transform);
             if (entityButton.TryGetComponent(out EditMenuEntityButtonController savedEntityButton) == true) {
-                savedEntityButton.text.text = $"Saved {i}";
-                savedEntityButton.didPressButton += () => { Debug.Log("Show menu to offer place or delete."); };
+                savedEntityButton.Configure(saved[i]);
+                savedEntityButton.serializationIndex = i;
+                savedEntityButton.didPressButton += () => { didPressSavedButton?.Invoke(savedEntityButton.serializationIndex); };
             }
         }
     }
