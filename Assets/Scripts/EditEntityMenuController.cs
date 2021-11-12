@@ -21,11 +21,21 @@ public class EditEntityMenuController: MonoBehaviour {
 
     public void DidPressSave() {
         Debug.Log(constructedEntity.ToString());
-        Debug.Log("and back");
+
+        var saved = Utils.GetSavedEntities();
+        saved.Add(constructedEntity);
+        Utils.SaveEntities(saved);
+
+        MenuController.DidPressBack();
     }
 
     public void DidPressSaveAndPlace() {
         Debug.Log(constructedEntity.ToString());
+
+        var saved = Utils.GetSavedEntities();
+        saved.Add(constructedEntity);
+        Utils.SaveEntities(saved);
+
         Debug.Log($"and continue to placing");
     }
 }

@@ -2,6 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public class ReloadableMenuController: MonoBehaviour {
+    public virtual void ShouldReload() {
+    }
+}
+
 public class MenuController: MonoBehaviour {
     public static MenuController instance;
     public GameObject mainCanvas;
@@ -49,6 +54,10 @@ public class MenuController: MonoBehaviour {
                 if (instance.menuStack.Count > 0) {
                     last = instance.menuStack.Last();
                     last.SetActive(true);
+
+                    if (last.TryGetComponent(out ReloadableMenuController r) == true) {
+                        r.ShouldReload();
+                    }
                 }
             }
         }

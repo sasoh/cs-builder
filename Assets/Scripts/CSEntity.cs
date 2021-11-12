@@ -1,5 +1,12 @@
+using System;
 using System.Collections.Generic;
 
+[Serializable]
+public struct CSEntityList {
+    public CSEntity[] entities;
+}
+
+[Serializable]
 public struct CSEntity {
     public int shapeIndex;
     public List<int> behaviours;
