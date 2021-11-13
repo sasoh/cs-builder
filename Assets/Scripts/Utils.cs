@@ -88,7 +88,7 @@ public class Utils: MonoBehaviour {
                 entity = new CSEntity {
                     name = $"Mock {i + 1}",
                     shapeIndex = Random.Range(1, 5) % 2 == 0 ? 0 : 1,
-                    behaviours = new List<int> { { i % 2 == 0 ? 1 : 0 } }
+                    behaviours = new List<CSBehaviour> { { i % 2 == 0 ? (CSBehaviour)1 : (CSBehaviour)0 } }
                 },
                 x = i,
                 y = i

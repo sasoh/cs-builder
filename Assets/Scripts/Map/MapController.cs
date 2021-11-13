@@ -24,8 +24,8 @@ public class MapController: MonoBehaviour {
     }
 
     static void ConstructTiles(GameObject tilePrefab, GameObject tileBase, float elementSpacing, int width, int height) {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 var instance = Instantiate(tilePrefab, tileBase.transform);
 
                 var position = new Vector3((j - (width - 1) / 2) * elementSpacing - elementSpacing / 2, 0.0f, (i - (height - 1) / 2) * elementSpacing - elementSpacing / 2);

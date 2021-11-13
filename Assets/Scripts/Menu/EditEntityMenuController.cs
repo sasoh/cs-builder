@@ -19,8 +19,8 @@ public class EditEntityMenuController: MonoBehaviour {
         constructedEntity.shapeIndex = selectedShapeIndex;
     }
 
-    void DidUpdateBehaviours(List<int> included) {
-        constructedEntity.behaviours = new List<int>(included);
+    void DidUpdateBehaviours(List<CSBehaviour> included) {
+        constructedEntity.behaviours = new List<CSBehaviour>(included);
     }
 
     public void DidPressSave() {

@@ -7,10 +7,16 @@ public struct CSEntityList {
 }
 
 [Serializable]
+public enum CSBehaviour {
+    Explode,
+    AddPoint
+}
+
+[Serializable]
 public struct CSEntity {
     public int shapeIndex;
     public string name;
-    public List<int> behaviours;
+    public List<CSBehaviour> behaviours;
 
     public override string ToString() {
         var result = $"Entity name: {name} shape: {shapeIndex} behaviors: [";

@@ -21,6 +21,17 @@ public class MapElementEntity: MonoBehaviour {
         foreach (var a in entityConfiguration.behaviours) {
             actionsList += $"{a} ";
         }
-        Debug.Log($"clicked on {gameObject} with actions [{actionsList}]");
+
+        var behaviours = entityConfiguration.behaviours;
+        if (behaviours != null) {
+            if (behaviours.Contains(CSBehaviour.AddPoint) == true) {
+                Debug.Log($"Add point from {gameObject}");
+            }
+
+            if (behaviours.Contains(CSBehaviour.Explode) == true) {
+                Debug.Log($"Destroying {gameObject}");
+                Destroy(gameObject);
+            }
+        }
     }
 }

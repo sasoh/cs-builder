@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EditEntityBehaviourListController: MonoBehaviour {
     public BehaviourButtonController[] behaviourButtons;
-    List<int> includedBehaviours = new List<int>();
-    public Action<List<int>> didChooseBehaviours;
+    List<CSBehaviour> includedBehaviours = new List<CSBehaviour>();
+    public Action<List<CSBehaviour>> didChooseBehaviours;
 
     void Start() {
         foreach (var b in behaviourButtons) {
@@ -13,18 +13,18 @@ public class EditEntityBehaviourListController: MonoBehaviour {
         }
     }
 
-    public void DidTapBehaviourButton(int index) {
-        var included = includedBehaviours.Contains(index);
+    public void DidTapBehaviourButton(CSBehaviour behaviour) {
+        var included = includedBehaviours.Contains(behaviour);
 
         if (included == false) {
-            includedBehaviours.Add(index);
+            includedBehaviours.Add(behaviour);
         }
         else {
-            includedBehaviours.Remove(index);
+            includedBehaviours.Remove(behaviour);
         }
 
         included = !included;
-        behaviourButtons[index].SetIncluded(included);
+        behaviourButtons[(int)behaviour].SetIncluded(included);
         didChooseBehaviours?.Invoke(includedBehaviours);
     }
 }
