@@ -39,7 +39,9 @@ public class MenuController: MonoBehaviour {
         if (instance != null) {
             if (menuPrefab != null) {
                 foreach (var m in instance.menuStack) {
-                    m.SetActive(false);
+                    if (m != instance.mapMask) {
+                        m.SetActive(false);
+                    }
                 }
 
                 var menuInstance = Instantiate(menuPrefab, instance.mainCanvas.transform);
@@ -55,6 +57,7 @@ public class MenuController: MonoBehaviour {
                 var last = instance.menuStack.Last();
                 Destroy(last.gameObject);
                 instance.menuStack.RemoveAt(instance.menuStack.Count - 1);
+                instance.mapMask.SetActive(true);
 
                 if (instance.menuStack.Count > 0) {
                     last = instance.menuStack.Last();
