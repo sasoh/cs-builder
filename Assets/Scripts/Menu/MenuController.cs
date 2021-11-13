@@ -9,9 +9,11 @@ public class ReloadableMenuController: MonoBehaviour {
 
 public class MenuController: MonoBehaviour {
     public static MenuController instance;
+    public GameObject mapMaskPrefab;
     public GameObject mainCanvas;
     public GameObject menuMainPrefab;
     List<GameObject> menuStack = new List<GameObject>();
+    GameObject mapMask;
 
     void Awake() {
         if (instance == null) {
@@ -25,13 +27,15 @@ public class MenuController: MonoBehaviour {
     void Start() {
         Debug.Assert(mainCanvas != null);
         Debug.Assert(menuMainPrefab != null);
+        Debug.Assert(mapMaskPrefab != null);
 
         Utils.RemoveChildren(mainCanvas.transform);
+        mapMask = Instantiate(mapMaskPrefab, mainCanvas.transform);
         var menuInstance = Instantiate(menuMainPrefab, mainCanvas.transform);
         menuStack.Add(menuInstance);
     }
 
-    public static void OpenMenu(GameObject menuPrefab) {
+    public static void OpenMenu(GameObject menuPrefab, bool shouldHideMask = false) {
         if (instance != null) {
             if (menuPrefab != null) {
                 foreach (var m in instance.menuStack) {
@@ -40,6 +44,7 @@ public class MenuController: MonoBehaviour {
 
                 var menuInstance = Instantiate(menuPrefab, instance.mainCanvas.transform);
                 instance.menuStack.Add(menuInstance);
+                instance.mapMask.SetActive(shouldHideMask == false);
             }
         }
     }

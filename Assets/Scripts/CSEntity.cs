@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 [Serializable]
 public struct CSEntityList {
-    public CSEntity[] entities;
+    public List<CSEntity> entities;
 }
 
 [Serializable]
@@ -13,7 +13,7 @@ public struct CSEntity {
     public List<int> behaviours;
 
     public override string ToString() {
-        var result = $"Entity shape: {shapeIndex} behaviors: [";
+        var result = $"Entity name: {name} shape: {shapeIndex} behaviors: [";
 
         if (behaviours != null) {
             for (var i = 0; i < behaviours.Count; i++) {

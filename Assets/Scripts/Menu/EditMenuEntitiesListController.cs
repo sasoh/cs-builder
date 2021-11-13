@@ -23,10 +23,10 @@ public class EditMenuEntitiesListController: MonoBehaviour {
         }
 
         var saved = Utils.GetSavedEntities();
-        for (var i = 0; i < saved.Count; i++) {
+        for (var i = 0; i < saved.entities.Count; i++) {
             var entityButton = Instantiate(savedEntityPrefab, grid.transform);
             if (entityButton.TryGetComponent(out EditMenuEntityButtonController savedEntityButton) == true) {
-                savedEntityButton.Configure(saved[i]);
+                savedEntityButton.Configure(saved.entities[i]);
                 savedEntityButton.serializationIndex = i;
                 savedEntityButton.didPressButton += () => { didPressSavedButton?.Invoke(savedEntityButton.serializationIndex); };
             }

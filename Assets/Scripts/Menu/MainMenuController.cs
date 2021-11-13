@@ -10,7 +10,7 @@ public class MainMenuController: MonoBehaviour {
     }
 
     public void DidPressPlay() {
-        MenuController.OpenMenu(menuPlayPrefab);
+        MenuController.OpenMenu(menuPlayPrefab, true);
     }
 
     public void DidPressEdit() {

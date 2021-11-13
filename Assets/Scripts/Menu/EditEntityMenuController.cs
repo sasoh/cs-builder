@@ -12,7 +12,7 @@ public class EditEntityMenuController: MonoBehaviour {
         behaviourController.didChooseBehaviours += DidUpdateBehaviours;
 
         var saved = Utils.GetSavedEntities();
-        nameField.text = $"Entity {saved.Count}";
+        nameField.text = $"Entity {saved.entities.Count}";
     }
 
     void DidSelectAppearance(int selectedShapeIndex) {
@@ -27,17 +27,17 @@ public class EditEntityMenuController: MonoBehaviour {
         constructedEntity.name = nameField.text;
 
         var saved = Utils.GetSavedEntities();
-        saved.Add(constructedEntity);
+        saved.entities.Add(constructedEntity);
         Utils.SaveEntities(saved);
 
         MenuController.DidPressBack();
     }
 
     public void DidPressSaveAndPlace() {
-        Debug.Log(constructedEntity.ToString());
+        constructedEntity.name = nameField.text;
 
         var saved = Utils.GetSavedEntities();
-        saved.Add(constructedEntity);
+        saved.entities.Add(constructedEntity);
         Utils.SaveEntities(saved);
 
         Debug.Log($"and continue to placing");

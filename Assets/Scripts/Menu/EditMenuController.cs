@@ -18,7 +18,7 @@ public class EditMenuController: ReloadableMenuController {
     }
 
     public void DidPressDeleteAllSaved() {
-        Utils.SaveEntities(new List<CSEntity>());
+        Utils.SaveEntities(new CSEntityList());
         entitiesListController.Reload();
     }
 
@@ -27,7 +27,7 @@ public class EditMenuController: ReloadableMenuController {
 
         if (currentlySelectedIndex != -1) {
             var saved = Utils.GetSavedEntities();
-            saved.RemoveAt(currentlySelectedIndex);
+            saved.entities.RemoveAt(currentlySelectedIndex);
             Utils.SaveEntities(saved);
             ShouldReload();
         }
