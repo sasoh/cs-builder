@@ -13,14 +13,26 @@ public class PlayMenuController: MonoBehaviour {
 
     void Start() {
         if (MapController.instance != null) {
-            MapController.instance.AttachScoreCounter(() => {
-                score++;
-                scoreText.text = $"Points: {score}";
-            });
-            MapController.instance.AttachExplodeCounter(() => {
-                exploded++;
-                explodedText.text = $"Exploded: {exploded}";
-            });
+            MapController.instance.AttachScoreCounter(() => didUpdateScore());
+            MapController.instance.AttachExplodeCounter(() => didExplode());
         }
+    }
+
+    void didUpdateScore() {
+        score++;
+        scoreText.text = $"Points: {score}";
+    }
+
+    void didExplode() {
+        exploded++;
+        explodedText.text = $"Exploded: {exploded}";
+    }
+
+    public void RestartGame() {
+        score = -1;
+        didUpdateScore();
+        exploded = -1;
+        didExplode();
+        MapController.instance?.RebuildMap();
     }
 }

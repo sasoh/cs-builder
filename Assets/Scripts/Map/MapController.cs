@@ -23,13 +23,17 @@ public class MapController: MonoBehaviour {
         if (instance == null) {
             instance = this;
 
-            var data = Utils.GetMockMap();
-            ConstructTiles(tileElementPrefab, tileElementBase, mapElementSpacing, mapWidth, mapHeight);
-            ConstructMap(data, mapElementPrefab, mapElementBase, mapElementSpacing, mapWidth, mapHeight, entities);
+            RebuildMap();
         }
         else {
             Destroy(gameObject);
         }
+    }
+
+    public void RebuildMap() {
+        var data = Utils.GetMockMap();
+        ConstructTiles(tileElementPrefab, tileElementBase, mapElementSpacing, mapWidth, mapHeight);
+        ConstructMap(data, mapElementPrefab, mapElementBase, mapElementSpacing, mapWidth, mapHeight, entities);
     }
 
     public void AttachScoreCounter(Action counter) {
@@ -44,6 +48,7 @@ public class MapController: MonoBehaviour {
     }
 
     static void ConstructTiles(GameObject tilePrefab, GameObject tileBase, float elementSpacing, int width, int height) {
+        Utils.RemoveChildren(tileBase.transform);
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 var instance = Instantiate(tilePrefab, tileBase.transform);
@@ -55,6 +60,7 @@ public class MapController: MonoBehaviour {
     }
 
     static void ConstructMap(CSMap mapData, GameObject elementPrefab, GameObject elementBase, float elementSpacing, int width, int height, List<MapElementEntity> collection) {
+        Utils.RemoveChildren(elementBase.transform);
         if (mapData.elements != null) {
             foreach (var e in mapData.elements) {
                 var instance = Instantiate(elementPrefab, elementBase.transform);

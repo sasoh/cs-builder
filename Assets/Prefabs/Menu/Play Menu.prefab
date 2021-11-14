@@ -564,6 +564,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 870219022648576475}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayMenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434234636812853272, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6437919754434905809, guid: 096bdac60c4c08f47aa98c9fe475d455, type: 3}
       propertyPath: m_Name
       value: Back Button
