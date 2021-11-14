@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EditMenuController: ReloadableMenuController {
@@ -6,6 +5,14 @@ public class EditMenuController: ReloadableMenuController {
     public EditMenuEntitiesListController entitiesListController;
     public GameObject savedEntityPanel;
     int currentlySelectedIndex = -1;
+    public GameObject editMapPrefab;
+
+    void Awake() {
+        Debug.Assert(menuEditEntityPrefab != null);
+        Debug.Assert(entitiesListController != null);
+        Debug.Assert(savedEntityPanel != null);
+        Debug.Assert(editMapPrefab != null);
+    }
 
     void Start() {
         Debug.Assert(menuEditEntityPrefab != null);
@@ -35,7 +42,7 @@ public class EditMenuController: ReloadableMenuController {
 
     public void DidPressPlaceSaved() {
         savedEntityPanel.SetActive(false);
-        Debug.Log($"Go to placing {currentlySelectedIndex}");
+        MenuController.OpenMenu(editMapPrefab);
     }
 
     public void DidPressCancelSaved() {

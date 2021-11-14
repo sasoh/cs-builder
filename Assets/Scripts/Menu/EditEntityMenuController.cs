@@ -6,6 +6,14 @@ public class EditEntityMenuController: MonoBehaviour {
     public EditEntityBehaviourListController behaviourController;
     CSEntity constructedEntity = new CSEntity();
     public TMPro.TMP_InputField nameField;
+    public GameObject editMapPrefab;
+
+    void Awake() {
+        Debug.Assert(appearanceController != null);
+        Debug.Assert(behaviourController != null);
+        Debug.Assert(nameField != null);
+        Debug.Assert(editMapPrefab != null);
+    }
 
     void Start() {
         appearanceController.didChooseAppearance += DidSelectAppearance;
@@ -34,12 +42,7 @@ public class EditEntityMenuController: MonoBehaviour {
     }
 
     public void DidPressSaveAndPlace() {
-        constructedEntity.name = nameField.text;
-
-        var saved = Utils.GetSavedEntities();
-        saved.entities.Add(constructedEntity);
-        Utils.SaveEntities(saved);
-
-        Debug.Log($"and continue to placing");
+        DidPressSave();
+        MenuController.OpenMenu(editMapPrefab);
     }
 }

@@ -13,14 +13,14 @@ public class EditEntityBehaviourListController: MonoBehaviour {
         }
     }
 
-    public void DidTapBehaviourButton(CSBehaviour behaviour) {
-        var included = includedBehaviours.Contains(behaviour);
+    public void DidTapBehaviourButton(int behaviour) {
+        var included = includedBehaviours.Contains((CSBehaviour)behaviour);
 
         if (included == false) {
-            includedBehaviours.Add(behaviour);
+            includedBehaviours.Add((CSBehaviour)behaviour);
         }
         else {
-            includedBehaviours.Remove(behaviour);
+            includedBehaviours.Remove((CSBehaviour)behaviour);
         }
 
         included = !included;

@@ -864,6 +864,7 @@ MonoBehaviour:
   appearanceController: {fileID: 5222387223776062387}
   behaviourController: {fileID: 8344392985226040918}
   nameField: {fileID: 8052785656701300408}
+  editMapPrefab: {fileID: 4233442667750355380, guid: 97871f11af3c8ec4c90198497b5eaec2, type: 3}
 --- !u!1 &5183199254335550152
 GameObject:
   m_ObjectHideFlags: 0

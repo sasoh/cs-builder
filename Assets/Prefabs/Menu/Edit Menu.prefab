@@ -724,6 +724,7 @@ MonoBehaviour:
   menuEditEntityPrefab: {fileID: 4233442667750355380, guid: a610af1b5738da948a37b9c699cbce6d, type: 3}
   entitiesListController: {fileID: 5339155556513727656}
   savedEntityPanel: {fileID: 3695156829947918961}
+  editMapPrefab: {fileID: 4233442667750355380, guid: 97871f11af3c8ec4c90198497b5eaec2, type: 3}
 --- !u!1 &4666402193878424044
 GameObject:
   m_ObjectHideFlags: 0
