@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class MapElementEntity: MonoBehaviour {
     public GameObject[] shapePrefabs;
     CSEntity entityConfiguration = new CSEntity();
+    public Action didAddPoint;
+    public Action didExplode;
 
     public void Configure(CSMapElement configuration) {
         name = configuration.entity.name;
@@ -17,19 +20,14 @@ public class MapElementEntity: MonoBehaviour {
     }
 
     void DidClickOnShape() {
-        var actionsList = "";
-        foreach (var a in entityConfiguration.behaviours) {
-            actionsList += $"{a} ";
-        }
-
         var behaviours = entityConfiguration.behaviours;
         if (behaviours != null) {
             if (behaviours.Contains(CSBehaviour.AddPoint) == true) {
-                Debug.Log($"Add point from {gameObject}");
+                didAddPoint?.Invoke();
             }
 
             if (behaviours.Contains(CSBehaviour.Explode) == true) {
-                Debug.Log($"Destroying {gameObject}");
+                didExplode?.Invoke();
                 Destroy(gameObject);
             }
         }
