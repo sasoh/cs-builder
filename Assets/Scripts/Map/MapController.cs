@@ -93,6 +93,9 @@ public class MapController: MonoBehaviour {
             mapEditor.SetShowPlacementInfoPanel(true);
             mapEditor.SetShowConfirmationInfoPanel(false);
 
+            if (currentMap.elements == null) {
+                currentMap.elements = new List<CSMapElement>();
+            }
             currentMap.elements.Add(new CSMapElement {
                 entity = currentlyPlacedEntity,
                 x = tile.X,

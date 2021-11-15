@@ -19,4 +19,5 @@ Entity selection menu
 
 ## Test mode
 Tapping on entity instances triggers the attached behaviour(s).
+
 - [x] keep score
