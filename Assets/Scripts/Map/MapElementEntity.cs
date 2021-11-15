@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class MapElementEntity: MonoBehaviour {
     public GameObject[] shapePrefabs;
-    CSEntity entityConfiguration = new CSEntity();
+    public CSMapElement EntityConfiguration { private set; get; }
     public Action didAddPoint;
     public Action didExplode;
 
+    void Awake() {
+        Debug.Assert(shapePrefabs != null && shapePrefabs.Length > 0);
+        EntityConfiguration = new CSMapElement();
+    }
+
     public void Configure(CSMapElement configuration) {
         name = configuration.entity.name;
-        entityConfiguration = configuration.entity;
+        EntityConfiguration = configuration;
 
         if (configuration.entity.shapeIndex < shapePrefabs.Length) {
             var instance = Instantiate(shapePrefabs[configuration.entity.shapeIndex], transform);
@@ -20,7 +25,7 @@ public class MapElementEntity: MonoBehaviour {
     }
 
     void DidClickOnShape() {
-        var behaviours = entityConfiguration.behaviours;
+        var behaviours = EntityConfiguration.entity.behaviours;
         if (behaviours != null) {
             if (behaviours.Contains(CSBehaviour.AddPoint) == true) {
                 didAddPoint?.Invoke();

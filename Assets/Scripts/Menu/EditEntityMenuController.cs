@@ -43,6 +43,8 @@ public class EditEntityMenuController: MonoBehaviour {
 
     public void DidPressSaveAndPlace() {
         DidPressSave();
+        var saved = Utils.GetSavedEntities();
+        MapController.instance.currentlyPlacedEntity = saved.entities[saved.entities.Count - 1];
         MenuController.OpenMenu(editMapPrefab);
     }
 }

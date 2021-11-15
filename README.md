@@ -15,7 +15,8 @@ Entity selection menu
 
 ### Choose already created one
 - [x] select created entity from list
-- [ ] place on level
+- [x] place on level
 
 ## Test mode
 Tapping on entity instances triggers the attached behaviour(s).
+- [x] keep score

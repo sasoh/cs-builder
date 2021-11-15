@@ -42,6 +42,8 @@ public class EditMenuController: ReloadableMenuController {
 
     public void DidPressPlaceSaved() {
         savedEntityPanel.SetActive(false);
+        var saved = Utils.GetSavedEntities();
+        MapController.instance.currentlyPlacedEntity = saved.entities[currentlySelectedIndex];
         MenuController.OpenMenu(editMapPrefab);
     }
 

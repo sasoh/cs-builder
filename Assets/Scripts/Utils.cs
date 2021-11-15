@@ -18,7 +18,7 @@ public class Utils: MonoBehaviour {
     static FileStream OpenedFileStream(string filePath, bool shouldRead) {
         FileStream result = null;
 
-        var fullPath = Application.persistentDataPath + savedFilePath;
+        var fullPath = Application.persistentDataPath + filePath;
         if (File.Exists(fullPath) == true) {
             if (shouldRead == true) {
                 result = File.OpenRead(fullPath);
@@ -76,25 +76,5 @@ public class Utils: MonoBehaviour {
         var formatter = new BinaryFormatter();
         formatter.Serialize(stream, map);
         stream.Close();
-    }
-
-    public static CSMap GetMockMap() {
-        var result = new CSMap {
-            elements = new List<CSMapElement>()
-        };
-
-        for (var i = 0; i < 8; i++) {
-            result.elements.Add(new CSMapElement {
-                entity = new CSEntity {
-                    name = $"Mock {i + 1}",
-                    shapeIndex = Random.Range(1, 5) % 2 == 0 ? 0 : 1,
-                    behaviours = new List<CSBehaviour> { { i % 2 == 0 ? (CSBehaviour)1 : (CSBehaviour)0 } }
-                },
-                x = i,
-                y = i
-            });
-        }
-
-        return result;
     }
 }

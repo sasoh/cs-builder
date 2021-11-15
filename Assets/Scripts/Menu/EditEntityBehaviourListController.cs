@@ -24,7 +24,7 @@ public class EditEntityBehaviourListController: MonoBehaviour {
         }
 
         included = !included;
-        behaviourButtons[(int)behaviour].SetIncluded(included);
+        behaviourButtons[behaviour].SetIncluded(included);
         didChooseBehaviours?.Invoke(includedBehaviours);
     }
 }
