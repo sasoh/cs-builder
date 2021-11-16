@@ -4,11 +4,15 @@ using UnityEngine;
 public class MapElementEntity: MonoBehaviour {
     public CSEntityConfigurationScriptableObject shapeData;
     public CSMapElement EntityConfiguration { private set; get; }
+    public GameObject addPointEffectPrefab;
+    public GameObject explosionEffectPrefab;
     public Action didAddPoint;
     public Action didExplode;
 
     void Awake() {
         Debug.Assert(shapeData != null && shapeData.configuration.Length > 0);
+        Debug.Assert(addPointEffectPrefab != null);
+        Debug.Assert(explosionEffectPrefab != null);
         EntityConfiguration = new CSMapElement();
     }
 
@@ -29,10 +33,17 @@ public class MapElementEntity: MonoBehaviour {
         if (behaviours != null) {
             if (behaviours.Contains(CSBehaviour.AddPoint) == true) {
                 didAddPoint?.Invoke();
+
+                var point = Instantiate(addPointEffectPrefab, null);
+                point.transform.position = transform.position;
             }
 
             if (behaviours.Contains(CSBehaviour.Explode) == true) {
                 didExplode?.Invoke();
+
+                var explosion = Instantiate(explosionEffectPrefab, null);
+                explosion.transform.position = transform.position;
+
                 Destroy(gameObject);
             }
         }

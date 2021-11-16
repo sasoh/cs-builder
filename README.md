@@ -26,8 +26,10 @@ Tapping on entity instances triggers the attached behaviour(s).
 - [x] saved entity appearance in entities list menu
 - [x] new entity appearance in new entity menu
 - [x] popup confirmation for entity deletion & map saving
-- [ ] explosion effect
-- [ ] point collection effect
+- [x] explosion effect
+- [x] point collection effect
+- [ ] loading behaviours from a file
+- [ ] loading shapes from a file
 - [ ] default game map
 - [ ] preview of placed item
 - [ ] music

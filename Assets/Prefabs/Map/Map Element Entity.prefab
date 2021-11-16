@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeData: {fileID: 11400000, guid: 71956109226d5ce4ca1c6afd75c658b8, type: 2}
+  addPointEffectPrefab: {fileID: 1634876723953677569, guid: e684a8afa9acfff4580c80a32c9b26ea, type: 3}
+  explosionEffectPrefab: {fileID: 1401583261018256625, guid: 3b8528b0a543d234eb1739756b08fb5c, type: 3}
