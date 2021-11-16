@@ -2,13 +2,13 @@ using System;
 using UnityEngine;
 
 public class MapElementEntity: MonoBehaviour {
-    public GameObject[] shapePrefabs;
+    public CSEntityConfigurationScriptableObject shapeData;
     public CSMapElement EntityConfiguration { private set; get; }
     public Action didAddPoint;
     public Action didExplode;
 
     void Awake() {
-        Debug.Assert(shapePrefabs != null && shapePrefabs.Length > 0);
+        Debug.Assert(shapeData != null && shapeData.configuration.Length > 0);
         EntityConfiguration = new CSMapElement();
     }
 
@@ -16,8 +16,8 @@ public class MapElementEntity: MonoBehaviour {
         name = configuration.entity.name;
         EntityConfiguration = configuration;
 
-        if (configuration.entity.shapeIndex < shapePrefabs.Length) {
-            var instance = Instantiate(shapePrefabs[configuration.entity.shapeIndex], transform);
+        if (configuration.entity.shapeIndex < shapeData.configuration.Length) {
+            var instance = Instantiate(shapeData.configuration[configuration.entity.shapeIndex].instancePrefab, transform);
             if (instance.TryGetComponent(out MapEntityShape s) == true) {
                 s.didClick += DidClickOnShape;
             }

@@ -18,17 +18,15 @@ public class EditMenuEntitiesListController: MonoBehaviour {
         Utils.RemoveChildren(grid.transform);
         var newEntityInstance = Instantiate(savedEntityPrefab, grid.transform);
         if (newEntityInstance.TryGetComponent(out EditMenuEntityButtonController newEntityButton) == true) {
-            newEntityButton.text.text = "New";
             newEntityButton.didPressButton += didPressNewButton;
+            newEntityButton.Configure(didPressNewButton);
         }
 
         var saved = Utils.GetSavedEntities();
         for (var i = 0; i < saved.entities.Count; i++) {
             var entityButton = Instantiate(savedEntityPrefab, grid.transform);
             if (entityButton.TryGetComponent(out EditMenuEntityButtonController savedEntityButton) == true) {
-                savedEntityButton.Configure(saved.entities[i]);
-                savedEntityButton.serializationIndex = i;
-                savedEntityButton.didPressButton += () => { didPressSavedButton?.Invoke(savedEntityButton.serializationIndex); };
+                savedEntityButton.Configure(saved.entities[i], i, () => { didPressSavedButton?.Invoke(savedEntityButton.serializationIndex); });
             }
         }
     }

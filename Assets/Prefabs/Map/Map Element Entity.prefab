@@ -43,6 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e146c548e7ea143b0f8b8df673598e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapePrefabs:
-  - {fileID: 462941632780502334, guid: 56ad14101cf12de4d8082161d0d1571b, type: 3}
-  - {fileID: 676947012860109834, guid: 364f1d57959effd46b44194ae14247e9, type: 3}
+  shapeData: {fileID: 11400000, guid: 71956109226d5ce4ca1c6afd75c658b8, type: 2}
