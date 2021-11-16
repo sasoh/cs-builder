@@ -12,10 +12,17 @@ public class MenuController: MonoBehaviour {
     public GameObject mapMaskPrefab;
     public GameObject mainCanvas;
     public GameObject menuMainPrefab;
+    public GameObject popupPrefab;
+    public GameObject ShownPopup { private set; get; }
     List<GameObject> menuStack = new List<GameObject>();
     GameObject mapMask;
 
     void Awake() {
+        Debug.Assert(mainCanvas != null);
+        Debug.Assert(menuMainPrefab != null);
+        Debug.Assert(mapMaskPrefab != null);
+        Debug.Assert(popupPrefab != null);
+
         if (instance == null) {
             instance = this;
         }
@@ -25,14 +32,28 @@ public class MenuController: MonoBehaviour {
     }
 
     void Start() {
-        Debug.Assert(mainCanvas != null);
-        Debug.Assert(menuMainPrefab != null);
-        Debug.Assert(mapMaskPrefab != null);
-
         Utils.RemoveChildren(mainCanvas.transform);
         mapMask = Instantiate(mapMaskPrefab, mainCanvas.transform);
         var menuInstance = Instantiate(menuMainPrefab, mainCanvas.transform);
         menuStack.Add(menuInstance);
+    }
+
+    public static void ShowPopup(PopupConfiguration configuration) {
+        if (instance != null) {
+            ClosePopup();
+            instance.ShownPopup = Instantiate(instance.popupPrefab, instance.mainCanvas.transform);
+            if (instance.ShownPopup.TryGetComponent(out PopupController p) == true) {
+                p.Configure(configuration);
+            }
+        }
+    }
+
+    public static void ClosePopup() {
+        if (instance != null) {
+            if (instance.ShownPopup != null) {
+                Destroy(instance.ShownPopup);
+            }
+        }
     }
 
     public static void OpenMenu(GameObject menuPrefab, bool shouldHideMask = false) {

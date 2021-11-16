@@ -30,7 +30,7 @@ public class MapTileController: MonoBehaviour {
     }
 
     void OnMouseDown() {
-        if (MapController.instance != null && MapController.instance.IsEditMode == true && takenHighlightObject.activeInHierarchy == false) {
+        if (MapController.instance != null && MapController.instance.IsEditMode == true && takenHighlightObject.activeInHierarchy == false && MenuController.instance?.ShownPopup == null) {
             didClickOnTile?.Invoke(this);
         }
     }

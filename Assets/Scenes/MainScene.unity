@@ -792,3 +792,4 @@ MonoBehaviour:
   mapMaskPrefab: {fileID: 4952821559709984150, guid: 81051ab2a1a96864fafffecc9d656d3a, type: 3}
   mainCanvas: {fileID: 1903216878}
   menuMainPrefab: {fileID: 4233442667750355380, guid: 2ce3935dcf684794693f5cc09766ebb0, type: 3}
+  popupPrefab: {fileID: 7082445608936081150, guid: 53888f2ca36d17944841e0917b205f41, type: 3}

@@ -1,16 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EditMenuController: ReloadableMenuController {
     public GameObject menuEditEntityPrefab;
     public EditMenuEntitiesListController entitiesListController;
-    public GameObject savedEntityPanel;
     int currentlySelectedIndex = -1;
     public GameObject editMapPrefab;
 
     void Awake() {
         Debug.Assert(menuEditEntityPrefab != null);
         Debug.Assert(entitiesListController != null);
-        Debug.Assert(savedEntityPanel != null);
         Debug.Assert(editMapPrefab != null);
     }
 
@@ -18,10 +17,26 @@ public class EditMenuController: ReloadableMenuController {
         Debug.Assert(menuEditEntityPrefab != null);
         entitiesListController.didPressNewButton = () => { MenuController.OpenMenu(menuEditEntityPrefab); };
         entitiesListController.didPressSavedButton = (selectedIndex) => {
-            savedEntityPanel.SetActive(true);
             currentlySelectedIndex = selectedIndex;
+
+            var popupConfig = new PopupConfiguration {
+                title = $"Select action",
+                buttons = new List<PopupButtonConfiguration> {
+                    new PopupButtonConfiguration {
+                        buttonText = "Place",
+                        didClickButton = DidPressPlaceSaved
+                    },
+                    new PopupButtonConfiguration {
+                        buttonText = "Delete",
+                        didClickButton = DidPressDeleteSaved
+                    },
+                    new PopupButtonConfiguration {
+                        buttonText = "Cancel",
+                    },
+                }
+            };
+            MenuController.ShowPopup(popupConfig);
         };
-        savedEntityPanel.SetActive(false);
     }
 
     public void DidPressDeleteAllSaved() {
@@ -30,8 +45,6 @@ public class EditMenuController: ReloadableMenuController {
     }
 
     public void DidPressDeleteSaved() {
-        savedEntityPanel.SetActive(false);
-
         if (currentlySelectedIndex != -1) {
             var saved = Utils.GetSavedEntities();
             saved.entities.RemoveAt(currentlySelectedIndex);
@@ -41,14 +54,9 @@ public class EditMenuController: ReloadableMenuController {
     }
 
     public void DidPressPlaceSaved() {
-        savedEntityPanel.SetActive(false);
         var saved = Utils.GetSavedEntities();
         MapController.instance.currentlyPlacedEntity = saved.entities[currentlySelectedIndex];
         MenuController.OpenMenu(editMapPrefab);
-    }
-
-    public void DidPressCancelSaved() {
-        savedEntityPanel.SetActive(false);
     }
 
     public override void ShouldReload() {

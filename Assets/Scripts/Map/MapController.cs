@@ -92,6 +92,7 @@ public class MapController: MonoBehaviour {
         if (tile == lastClickedTile) {
             mapEditor.SetShowPlacementInfoPanel(true);
             mapEditor.SetShowConfirmationInfoPanel(false);
+            mapEditor.DidModifyMap();
 
             if (currentMap.elements == null) {
                 currentMap.elements = new List<CSMapElement>();
