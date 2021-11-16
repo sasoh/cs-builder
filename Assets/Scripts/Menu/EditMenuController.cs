@@ -40,8 +40,22 @@ public class EditMenuController: ReloadableMenuController {
     }
 
     public void DidPressDeleteAllSaved() {
-        Utils.SaveEntities(new CSEntityList());
-        entitiesListController.Reload();
+        var popupConfig = new PopupConfiguration {
+            title = $"Delete all saved entities?",
+            buttons = new List<PopupButtonConfiguration> {
+                new PopupButtonConfiguration {
+                    buttonText = "Delete",
+                    didClickButton = () => {
+                        Utils.SaveEntities(new CSEntityList());
+                        entitiesListController.Reload();
+                    }
+                },
+                new PopupButtonConfiguration {
+                    buttonText = "Cancel",
+                },
+            }
+        };
+        MenuController.ShowPopup(popupConfig);
     }
 
     public void DidPressDeleteSaved() {

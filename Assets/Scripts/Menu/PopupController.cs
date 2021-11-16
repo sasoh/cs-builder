@@ -21,6 +21,7 @@ public class PopupController: MonoBehaviour {
 
     public void Configure(PopupConfiguration configuration) {
         titleText.text = configuration.title;
+        Utils.RemoveChildren(buttonContainer.transform);
 
         if (configuration.buttons != null) {
             foreach (var b in configuration.buttons) {

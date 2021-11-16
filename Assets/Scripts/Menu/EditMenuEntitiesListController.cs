@@ -18,7 +18,6 @@ public class EditMenuEntitiesListController: MonoBehaviour {
         Utils.RemoveChildren(grid.transform);
         var newEntityInstance = Instantiate(savedEntityPrefab, grid.transform);
         if (newEntityInstance.TryGetComponent(out EditMenuEntityButtonController newEntityButton) == true) {
-            newEntityButton.didPressButton += didPressNewButton;
             newEntityButton.Configure(didPressNewButton);
         }
 

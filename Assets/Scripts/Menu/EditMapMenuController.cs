@@ -32,11 +32,6 @@ public class EditMapMenuController: MonoBehaviour, IMapEditor {
         DidModifyMap();
     }
 
-    //public void DidPressSaveMap() {
-    //    MapController.instance?.SaveMap();
-    //    mapModified = false;
-    //}
-
     public void SetShowPlacementInfoPanel(bool status) {
         placementInfoObject.SetActive(status);
     }
